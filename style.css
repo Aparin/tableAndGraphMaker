@@ -1,4 +1,11 @@
-.element {
+/* ---------- table ---------- */
+
+#dividendsTable {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.table {
     float: left;
     padding: 3px;
     border: 1px dotted lightgrey;
@@ -8,4 +15,28 @@
 
 .clear {
     clear: both;
+}
+
+
+/* ---------- graph ---------- */
+
+.graph {
+    height: 300px;
+    display: flex
+}
+
+#dividendsGraph {
+    height: 300px;
+    display: table;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.column {
+    vertical-align: bottom;
+    display: inline-block;
+}
+
+.years {
+    padding: -20px;
 }
