@@ -29,14 +29,21 @@ var createGraph = (id, data, col) => {
         var fragment = document.createDocumentFragment();
 
         var value = makeElement('div', 'value', data[count]);
+        value.style.width = 40 + '%';
+        /*
         value.style.width = (1 + columnCorrection) * elementWidth + '%';
+        */
         fragment.appendChild(value); // append value of column
 
         var column = makeElement('div', 'column'); // append column
         column.style.height = height;
-        column.style.width = (1 + columnCorrection) * elementWidth + '%'; //width of the column
         column.style.backgroundColor = color;
-        column.style.marginRight = (1 - columnCorrection) * elementWidth + '%'; //width of the indentation
+        column.style.width = 40 + '%';
+        /*
+                var columnWidth = 100 / (col - 1);
+                column.style.width = columnWidth * (1 + columnCorrection) + '%'; //width of the column
+                column.style.marginRight = columnWidth * (1 - columnCorrection) + '%'; //width of the indentation
+        */
         fragment.appendChild(column);
         return fragment;
     }
