@@ -31,11 +31,13 @@
 .value,
 .year {
     text-align: center;
-    font-size: 12px;
 }
 
 .year {
     display: block;
+    margin: 5px;
+    background: lightgray;
+    padding: 2px;
 }
 
 .columnWrap {
