@@ -20,23 +20,20 @@
 
 /* ---------- graph ---------- */
 
-.graph {
-    height: 300px;
-    display: flex
-}
-
 #dividendsGraph {
-    height: 300px;
-    display: table;
+    /* height: 300px; */
     width: 100%;
     margin: 10px 0px;
+    border-left: 2px dotted gray;
+    border-bottom: 2px dotted gray;
+    padding: 3px;
 }
 
 .column {
-    vertical-align: bottom;
     display: inline-block;
 }
 
-.years {
-    padding: -20px;
+.value,
+.year {
+    text-align: center;
 }

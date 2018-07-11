@@ -24,15 +24,18 @@ var createTable = (id, data, col) => {
 var createGraph = (id, data, col) => {
     var area = document.getElementById(id);
 
-    var makeCollumn = (height, color) => {
-        var element = makeElement('div', 'column');
+    var makeCollumn = (height, color, count) => {
+        var fragment = document.createDocumentFragment();
+        fragment.appendChild(makeElement('div', 'value', data[count])); // append value of column
+        var element = makeElement('div', 'column'); // append column
         element.style.height = height;
         var collumnCorrection = 0.6; //changing the ratio between width collumn and indentation
         element.style.width = (1 + collumnCorrection) * elementWidth + '%'; //width of the collumn
         element.style.backgroundColor = color;
         element.style.marginRight = (1 - collumnCorrection) * elementWidth + '%'; //width of the indentation
-        area.appendChild(element);
-        //var currentYear = makeElement('div', 'years', year);
+        fragment.appendChild(element);
+        return fragment;
+        // area.appendChild(fragment);
     }
 
     var maxValue = (data, col) => { //definition of the maximum value in data
@@ -53,11 +56,14 @@ var createGraph = (id, data, col) => {
     var elementWidth = 100 / collumns / 2;
     for (var i = col + 1; i < data.length; i += col) {
         var height = data[i] / maxValue(data, col) * 300;
-        makeCollumn(height + 'px', 'red');
+        var newYear = makeCollumn(height + 'px', 'red', i);
+
         if (col === 3) {
             height = data[i + 1] / maxValue(data, col) * 300;
-            makeCollumn(height + 'px', 'blue');
+            newYear.appendChild(makeCollumn(height + 'px', 'blue', i + 1));
         }
+        newYear.appendChild(makeElement('div', 'year', data[i - 1])); // append year
+        area.appendChild(newYear); // output year
     }
 }
 
