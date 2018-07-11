@@ -23,19 +23,22 @@ var createTable = (id, data, col) => {
 /* The function of creating a graph */
 var createGraph = (id, data, col) => {
     var area = document.getElementById(id);
+    var columnCorrection = 0.6; //changing the ratio between width column and indentation
 
-    var makeCollumn = (height, color, count) => {
+    var makeColumn = (height, color, count) => {
         var fragment = document.createDocumentFragment();
-        fragment.appendChild(makeElement('div', 'value', data[count])); // append value of column
-        var element = makeElement('div', 'column'); // append column
-        element.style.height = height;
-        var collumnCorrection = 0.6; //changing the ratio between width collumn and indentation
-        element.style.width = (1 + collumnCorrection) * elementWidth + '%'; //width of the collumn
-        element.style.backgroundColor = color;
-        element.style.marginRight = (1 - collumnCorrection) * elementWidth + '%'; //width of the indentation
-        fragment.appendChild(element);
+
+        var value = makeElement('div', 'value', data[count]);
+        value.style.width = (1 + columnCorrection) * elementWidth + '%';
+        fragment.appendChild(value); // append value of column
+
+        var column = makeElement('div', 'column'); // append column
+        column.style.height = height;
+        column.style.width = (1 + columnCorrection) * elementWidth + '%'; //width of the column
+        column.style.backgroundColor = color;
+        column.style.marginRight = (1 - columnCorrection) * elementWidth + '%'; //width of the indentation
+        fragment.appendChild(column);
         return fragment;
-        // area.appendChild(fragment);
     }
 
     var maxValue = (data, col) => { //definition of the maximum value in data
@@ -52,18 +55,20 @@ var createGraph = (id, data, col) => {
         return stack;
     }
 
-    var collumns = data.length - col - (data.length - col) / col;
-    var elementWidth = 100 / collumns / 2;
+    var columns = data.length - col - (data.length - col) / col;
+    var elementWidth = 100 / columns / 2;
     for (var i = col + 1; i < data.length; i += col) {
         var height = data[i] / maxValue(data, col) * 300;
-        var newYear = makeCollumn(height + 'px', 'red', i);
+        var column = makeColumn(height + 'px', 'red', i);
 
         if (col === 3) {
             height = data[i + 1] / maxValue(data, col) * 300;
-            newYear.appendChild(makeCollumn(height + 'px', 'blue', i + 1));
+            column.appendChild(makeColumn(height + 'px', 'blue', i + 1));
         }
-        newYear.appendChild(makeElement('div', 'year', data[i - 1])); // append year
-        area.appendChild(newYear); // output year
+        var newYear = (makeElement('div', 'year', data[i - 1])); // append year
+        newYear.style.width = (1 + columnCorrection) * elementWidth + '%';
+        column.appendChild(newYear);
+        area.appendChild(column); // output year
     }
 }
 
