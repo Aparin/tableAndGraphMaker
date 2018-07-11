@@ -34,7 +34,15 @@
     font-size: 12px;
 }
 
-.column {}
+.year {
+    display: block;
+}
+
+.columnWrap {
+    display: inline-block;
+    margin-right: 3px;
+    vertical-align: bottom;
+}
 
 .fullYear {
     display: inline-block;
