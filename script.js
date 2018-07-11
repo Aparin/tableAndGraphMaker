@@ -68,7 +68,15 @@ var createGraph = (id, data, col) => {
         var newYear = (makeElement('div', 'year', data[i - 1])); // append year
         newYear.style.width = (1 + columnCorrection) * elementWidth + '%';
         column.appendChild(newYear);
-        area.appendChild(column); // output year
+        var fullYear = document.createElement('div');
+        fullYear.classList.add('fullYear');
+        var widthFullYear;
+        if (col === 2) { widthFullYear = 2 * elementWidth; } else { widthFullYear = 3 * elementWidth; }
+        // console.log(widthFullYear); // 6.8 %
+        fullYear.style.width = widthFullYear;
+
+        fullYear.appendChild(column);
+        area.appendChild(fullYear); // output year
     }
 }
 

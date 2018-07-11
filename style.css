@@ -21,7 +21,6 @@
 /* ---------- graph ---------- */
 
 #dividendsGraph {
-    /* height: 300px; */
     width: 100%;
     margin: 10px 0px;
     border-left: 2px dotted gray;
@@ -29,12 +28,12 @@
     padding: 3px;
 }
 
-.column {
-    display: inline-block;
-}
-
 .value,
 .year {
     text-align: center;
     font-size: 12px;
+}
+
+.fullYear {
+    /* display: inline-block; */
 }
