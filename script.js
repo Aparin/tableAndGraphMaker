@@ -73,7 +73,7 @@ var createGraph = (id, data, col) => {
         var widthFullYear;
         if (col === 2) { widthFullYear = 2 * elementWidth; } else { widthFullYear = 3 * elementWidth; }
         // console.log(widthFullYear); // 6.8 %
-        fullYear.style.width = widthFullYear;
+        fullYear.style.width = widthFullYear + '%';
 
         fullYear.appendChild(column);
         area.appendChild(fullYear); // output year
