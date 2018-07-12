@@ -1,11 +1,11 @@
 /* ---------- table ---------- */
 
-#dividendsTable {
+.table {
     width: 300px;
     margin: 0 auto;
 }
 
-.table {
+.cell {
     float: left;
     padding: 3px;
     border: 1px dotted lightgrey;
@@ -20,29 +20,48 @@
 
 /* ---------- graph ---------- */
 
-#dividendsGraph {
+.graph {
     width: 100%;
     margin: 10px 0px;
     border-left: 2px dotted gray;
     border-bottom: 2px dotted gray;
-    padding: 3px;
+    padding: 8px;
 }
 
 .value,
 .year {
     text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 14px;
+    padding-bottom: 4px;
+}
+
+.valueVertical {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    position: relative;
+    margin-bottom: -15px;
+    color: gray;
 }
 
 .year {
     display: block;
-    margin: 5px;
     background: lightgray;
-    padding: 2px;
+    width: 92%;
+    margin: 4px 2% 4px 2%;
+    padding: 2%;
+    padding-bottom: 4px;
+}
+
+.yearVertical {
+    transform: rotate(-35deg);
+    transform-origin: 75% bottom;
+    margin-right: 5px;
+    background: none;
 }
 
 .columnWrap {
     display: inline-block;
-    margin-right: 3px;
     vertical-align: bottom;
 }
 
