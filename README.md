@@ -1,1 +1,1 @@
-Generator of tables and graphs for Znanion.ru
+Generator of tables and graphs for Znanion.ru. Example work: https://znanion.ru/dengi/dividendy-i-dohodnost-akcij-sberbanka-obychnye-i-privilegirovannye/

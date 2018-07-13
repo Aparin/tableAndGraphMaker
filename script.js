@@ -1,3 +1,5 @@
+document.write("<link rel='stylesheet' href='https://znanion.ru/scripts/graphMaker/style.css' type='text/css'>");
+
 var makeElement = (tagName, className, text) => {
     var element = document.createElement(tagName);
     element.classList.add(className);
@@ -102,5 +104,19 @@ var createGraph = (id, data, col) => {
 createTable('dividendsTable', dividends, 3);
 createGraph('dividendsGraph', dividends, 3);
 
+createTable('dividendsAnTable', dividendsAn, 3);
+createGraph('dividendsAnGraph', dividendsAn, 3);
+
+// Percent of net profit, aimed on dividends
+createTable('percentTable', percent, 2);
+createGraph('percentGraph', percent, 2);
+
 createTable('pricesTable', prices, 3);
 createGraph('pricesGraph', prices, 3);
+
+// dividend's yield
+createTable('dividendYieldTable', dividendYield, 3);
+createGraph('dividendYieldGraph', dividendYield, 3);
+
+// speculative yield
+createTable('speculativeYieldTable', speculativeYield, 3);
