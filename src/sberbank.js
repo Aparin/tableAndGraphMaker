@@ -1,4 +1,4 @@
-var dividends = [
+const dividends = [
     'Год', 'Обычка', 'Префы',
     2008, 0.51, 0.65,
     2009, 0.48, 0.63,
@@ -12,7 +12,7 @@ var dividends = [
     2017, 6, 6,
     2018, 12, 12
 ];
-var dividendsAn = [
+const dividendsAn = [
     'Год', 'Обычка', 'Префы',
     2002, 52.85, 1.14,
     2003, 109, 2.32,
@@ -22,7 +22,7 @@ var dividendsAn = [
     2007, 385.5, 9.3
 ];
 
-var prices = [
+const prices = [
     'Год', 'Обычка', 'Префы',
     2008, 22.79, 9.06,
     2009, 82.94, 69.00,
@@ -37,7 +37,7 @@ var prices = [
 ];
 
 // Percent of net profit, aimed on dividends
-var percent = [
+const percent = [
     'Год', 'Процент',
     2001, 6,
     2002, 7,
@@ -57,7 +57,7 @@ var percent = [
     2016, 25,
     2017, 41.5
 ];
-var dividendYield = [
+const dividendYield = [
     'Год', 'Обычка', 'Префы',
     2008, 2.1, 7,
     2009, 0.1, 0.7,
@@ -70,7 +70,7 @@ var dividendYield = [
     2016, 3.5, 4.6,
     2017, 5.3, 6.4
 ];
-var speculativeYield = [
+const speculativeYield = [
     'Год', 'Обычка', 'Префы',
     2009, 264, 662,
     2010, 26, 9,

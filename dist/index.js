@@ -1,6 +1,8 @@
+'use strict';
+
 document.write("<link rel='stylesheet' href='https://znanion.ru/scripts/graphMaker/style.css' type='text/css'>");
 
-var makeElement = (tagName, className, text) => {
+var makeElement = function makeElement(tagName, className, text) {
     var element = document.createElement(tagName);
     element.classList.add(className);
     if (text) {
@@ -10,7 +12,7 @@ var makeElement = (tagName, className, text) => {
 };
 
 /* The function of creating a table */
-var createTable = (id, data, col) => {
+var createTable = function createTable(id, data, col) {
     var area = document.getElementById(id);
 
     for (var i = 0; i < data.length; i = i + col) {
@@ -20,20 +22,22 @@ var createTable = (id, data, col) => {
         }
         area.appendChild(makeElement('div', 'clear'));
     }
-}
+};
 
 /* The function of creating a graph */
-var createGraph = (id, data, col) => {
+var createGraph = function createGraph(id, data, col) {
     var area = document.getElementById(id);
 
     // make single column with value
-    var makeColumn = (height, color, count) => {
+    var makeColumn = function makeColumn(height, color, count) {
         var wrap = makeElement('div', 'columnWrap');
         var fragment = document.createDocumentFragment();
 
         // append value of column
         var value = makeElement('div', 'value', data[count]);
-        if (document.documentElement.clientWidth * elementWidth / 100 < 45) { value.classList.add("valueVertical"); } // turn text-line
+        if (document.documentElement.clientWidth * elementWidth / 100 < 45) {
+            value.classList.add("valueVertical");
+        } // turn text-line
         fragment.appendChild(value);
 
         // append column
@@ -44,10 +48,10 @@ var createGraph = (id, data, col) => {
 
         wrap.appendChild(fragment);
         return wrap;
-    }
+    };
 
     //definition of the maximum value in data
-    var maxValue = (data, col) => {
+    var maxValue = function maxValue(data, col) {
         var stack = data[col + 1];
         var start = col + 1;
         for (var i = start; i < data.length; i = i + col) {
@@ -56,32 +60,40 @@ var createGraph = (id, data, col) => {
                     stack = data[i + j];
                 }
             }
-            if (data[i] > stack) { stack = data[i]; }
+            if (data[i] > stack) {
+                stack = data[i];
+            }
         }
         return stack;
-    }
+    };
 
     var columns = data.length - col - (data.length - col) / col;
     var elementWidth = 100 / columns;
 
-    for (var i = col + 1; i < data.length; i += col) {
+    var _loop = function _loop(i) {
 
         // make main element containing values, columns, year
         var fullYear = makeElement('div', 'fullYear');
-        var widthFullYear;
-        if (col === 2) { widthFullYear = elementWidth; } else { widthFullYear = 2 * elementWidth; }
+        var widthFullYear = void 0;
+        if (col === 2) {
+            widthFullYear = elementWidth;
+        } else {
+            widthFullYear = 2 * elementWidth;
+        }
         fullYear.style.width = widthFullYear + '%';
 
         // single column width and indentation
-        var widthsCol = () => {
+        var widthsCol = function widthsCol() {
             var cw = 100 / (col - 1);
             var w = 0.90;
             column.style.width = w * cw + '%';
             var m = (1 - w) / 2 * cw + '%';
             column.style.marginLeft = m;
             column.style.marginRight = m;
-        }
-        var height = i => { return data[i] / maxValue(data, col) * 300 + 'px'; }
+        };
+        var height = function height(i) {
+            return data[i] / maxValue(data, col) * 300 + 'px';
+        };
         var column = makeColumn(height(i), 'red', i);
         widthsCol();
         fullYear.appendChild(column);
@@ -92,14 +104,19 @@ var createGraph = (id, data, col) => {
             fullYear.appendChild(column);
         }
 
-        var year = (makeElement('div', 'year', data[i - 1])); // append year
-        if (document.documentElement.clientWidth * elementWidth / 100 * 2 < 45) { year.classList.add("yearVertical"); }
+        var year = makeElement('div', 'year', data[i - 1]); // append year
+        if (document.documentElement.clientWidth * elementWidth / 100 * 2 < 45) {
+            year.classList.add("yearVertical");
+        }
         fullYear.appendChild(year);
 
-
         area.appendChild(fullYear); // output year
+    };
+
+    for (var i = col + 1; i < data.length; i += col) {
+        _loop(i);
     }
-}
+};
 
 createTable('dividendsTable', dividends, 3);
 createGraph('dividendsGraph', dividends, 3);
