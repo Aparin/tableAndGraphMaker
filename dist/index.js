@@ -2,7 +2,7 @@
 
 document.write("<link rel='stylesheet' href='https://znanion.ru/scripts/graphMaker/style.css' type='text/css'>");
 
-var makeElement = function makeElement(tagName, className, text) {
+function makeElement(tagName, className, text) {
     var element = document.createElement(tagName);
     element.classList.add(className);
     if (text) {
@@ -11,8 +11,25 @@ var makeElement = function makeElement(tagName, className, text) {
     return element;
 };
 
+//definition of the maximum value in data
+function maxValue(data, col) {
+    var stack = data[col + 1];
+    var start = col + 1;
+    for (var i = start; i < data.length; i = i + col) {
+        for (var j = 0; j < col - 1; j++) {
+            if (data[i + j] > stack) {
+                stack = data[i + j];
+            }
+        }
+        if (data[i] > stack) {
+            stack = data[i];
+        }
+    }
+    return stack;
+}
+
 /* The function of creating a table */
-var createTable = function createTable(id, data, col) {
+function createTable(id, data, col) {
     var area = document.getElementById(id);
 
     for (var i = 0; i < data.length; i = i + col) {
@@ -22,14 +39,14 @@ var createTable = function createTable(id, data, col) {
         }
         area.appendChild(makeElement('div', 'clear'));
     }
-};
+}
 
 /* The function of creating a graph */
-var createGraph = function createGraph(id, data, col) {
+function createGraph(id, data, col) {
     var area = document.getElementById(id);
-
+    /* */
     // make single column with value
-    var makeColumn = function makeColumn(height, color, count) {
+    function makeColumn(height, color, count) {
         var wrap = makeElement('div', 'columnWrap');
         var fragment = document.createDocumentFragment();
 
@@ -48,24 +65,7 @@ var createGraph = function createGraph(id, data, col) {
 
         wrap.appendChild(fragment);
         return wrap;
-    };
-
-    //definition of the maximum value in data
-    var maxValue = function maxValue(data, col) {
-        var stack = data[col + 1];
-        var start = col + 1;
-        for (var i = start; i < data.length; i = i + col) {
-            for (var j = 0; j < col - 1; j++) {
-                if (data[i + j] > stack) {
-                    stack = data[i + j];
-                }
-            }
-            if (data[i] > stack) {
-                stack = data[i];
-            }
-        }
-        return stack;
-    };
+    }
 
     var columns = data.length - col - (data.length - col) / col;
     var elementWidth = 100 / columns;
@@ -116,7 +116,7 @@ var createGraph = function createGraph(id, data, col) {
     for (var i = col + 1; i < data.length; i += col) {
         _loop(i);
     }
-};
+}
 
 createTable('dividendsTable', dividends, 3);
 createGraph('dividendsGraph', dividends, 3);

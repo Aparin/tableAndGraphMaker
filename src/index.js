@@ -1,6 +1,6 @@
 document.write("<link rel='stylesheet' href='https://znanion.ru/scripts/graphMaker/style.css' type='text/css'>");
 
-const makeElement = (tagName, className, text) => {
+function makeElement(tagName, className, text) {
     const element = document.createElement(tagName);
     element.classList.add(className);
     if (text) {
@@ -9,8 +9,23 @@ const makeElement = (tagName, className, text) => {
     return element;
 };
 
+//definition of the maximum value in data
+function maxValue(data, col) {
+    let stack = data[col + 1];
+    let start = col + 1;
+    for (let i = start; i < data.length; i = i + col) {
+        for (let j = 0; j < col - 1; j++) {
+            if (data[i + j] > stack) {
+                stack = data[i + j];
+            }
+        }
+        if (data[i] > stack) { stack = data[i]; }
+    }
+    return stack;
+}
+
 /* The function of creating a table */
-const createTable = (id, data, col) => {
+function createTable(id, data, col) {
     const area = document.getElementById(id);
 
     for (let i = 0; i < data.length; i = i + col) {
@@ -23,11 +38,11 @@ const createTable = (id, data, col) => {
 }
 
 /* The function of creating a graph */
-const createGraph = (id, data, col) => {
+function createGraph(id, data, col) {
     const area = document.getElementById(id);
-
+    /* */
     // make single column with value
-    const makeColumn = (height, color, count) => {
+    function makeColumn(height, color, count) {
         const wrap = makeElement('div', 'columnWrap');
         const fragment = document.createDocumentFragment();
 
@@ -44,21 +59,6 @@ const createGraph = (id, data, col) => {
 
         wrap.appendChild(fragment);
         return wrap;
-    }
-
-    //definition of the maximum value in data
-    const maxValue = (data, col) => {
-        let stack = data[col + 1];
-        let start = col + 1;
-        for (let i = start; i < data.length; i = i + col) {
-            for (let j = 0; j < col - 1; j++) {
-                if (data[i + j] > stack) {
-                    stack = data[i + j];
-                }
-            }
-            if (data[i] > stack) { stack = data[i]; }
-        }
-        return stack;
     }
 
     const columns = data.length - col - (data.length - col) / col;
