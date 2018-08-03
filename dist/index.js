@@ -2,8 +2,10 @@
 
 var _sberbank = require('./sberbank');
 
-document.write("<link rel='stylesheet' href='https://znanion.ru/scripts/graphMaker/style.css' type='text/css'>");
+var _style = require('./style');
 
+// document.write("<link rel='stylesheet' href='https://znanion.ru/scripts/graphMaker/style.css' type='text/css'>");
+document.write('<style>' + _style.css + '</style>');
 
 function makeElement(tagName, className, text) {
     var element = document.createElement(tagName);

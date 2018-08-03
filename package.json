@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "babel": "babel",
         "dev": "webpack --mode development",
-        "build": "webpack --mode production"
+        "build": "webpack --mode production",
+        "watch": "webpack --watch"
     },
     "author": "Апарин Александр",
     "license": "ISC",
