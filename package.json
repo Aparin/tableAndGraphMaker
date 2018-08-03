@@ -5,7 +5,9 @@
     "main": "dist/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "babel": "babel"
+        "babel": "babel",
+        "dev": "webpack --mode development",
+        "build": "webpack --mode production"
     },
     "author": "Апарин Александр",
     "license": "ISC",
@@ -13,6 +15,8 @@
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.3",
         "babel-preset-env": "^1.7.0",
-        "babel-preset-stage-0": "^6.24.1"
+        "babel-preset-stage-0": "^6.24.1",
+        "webpack": "^4.16.4",
+        "webpack-cli": "^3.1.0"
     }
 }

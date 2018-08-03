@@ -83,3 +83,5 @@ const speculativeYield = [
     2017, 30, 46,
     'Среднее', 48, 94
 ];
+
+export { dividends, dividendsAn, prices, percent, dividendYield, speculativeYield };

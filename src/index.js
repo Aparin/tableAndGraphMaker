@@ -1,4 +1,6 @@
 document.write("<link rel='stylesheet' href='https://znanion.ru/scripts/graphMaker/style.css' type='text/css'>");
+import { dividends, dividendsAn, prices, percent, dividendYield, speculativeYield }
+from './sberbank';
 
 function makeElement(tagName, className, text) {
     const element = document.createElement(tagName);
