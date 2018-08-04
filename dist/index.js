@@ -4,34 +4,18 @@ var _sberbank = require('./sberbank');
 
 var _style = require('./style');
 
+var _maxValueInTable = require('./maxValueInTable');
+
+var _maxValueInTable2 = _interopRequireDefault(_maxValueInTable);
+
+var _makeDOMelement = require('./makeDOMelement');
+
+var _makeDOMelement2 = _interopRequireDefault(_makeDOMelement);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // document.write("<link rel='stylesheet' href='https://znanion.ru/scripts/graphMaker/style.css' type='text/css'>");
 document.write('<style>' + _style.css + '</style>');
-
-function makeElement(tagName, className, text) {
-    var element = document.createElement(tagName);
-    element.classList.add(className);
-    if (text) {
-        element.textContent = text;
-    }
-    return element;
-};
-
-//definition of the maximum value in data
-function maxValue(data, col) {
-    var stack = data[col + 1];
-    var start = col + 1;
-    for (var i = start; i < data.length; i = i + col) {
-        for (var j = 0; j < col - 1; j++) {
-            if (data[i + j] > stack) {
-                stack = data[i + j];
-            }
-        }
-        if (data[i] > stack) {
-            stack = data[i];
-        }
-    }
-    return stack;
-}
 
 /* The function of creating a table */
 function createTable(id, data, col) {
@@ -39,10 +23,10 @@ function createTable(id, data, col) {
 
     for (var i = 0; i < data.length; i = i + col) {
         for (var j = 0; j < col; j++) {
-            var element = makeElement('div', 'cell', data[i + j]);
+            var element = (0, _makeDOMelement2.default)('div', 'cell', data[i + j]);
             area.appendChild(element);
         }
-        area.appendChild(makeElement('div', 'clear'));
+        area.appendChild((0, _makeDOMelement2.default)('div', 'clear'));
     }
 }
 
@@ -52,18 +36,18 @@ function createGraph(id, data, col) {
     /* */
     // make single column with value
     function makeColumn(height, color, count) {
-        var wrap = makeElement('div', 'columnWrap');
+        var wrap = (0, _makeDOMelement2.default)('div', 'columnWrap');
         var fragment = document.createDocumentFragment();
 
         // append value of column
-        var value = makeElement('div', 'value', data[count]);
+        var value = (0, _makeDOMelement2.default)('div', 'value', data[count]);
         if (document.documentElement.clientWidth * elementWidth / 100 < 45) {
             value.classList.add("valueVertical");
         } // turn text-line
         fragment.appendChild(value);
 
         // append column
-        var column = makeElement('div', 'column');
+        var column = (0, _makeDOMelement2.default)('div', 'column');
         column.style.height = height;
         column.style.backgroundColor = color;
         fragment.appendChild(column);
@@ -78,7 +62,7 @@ function createGraph(id, data, col) {
     var _loop = function _loop(i) {
 
         // make main element containing values, columns, year
-        var fullYear = makeElement('div', 'fullYear');
+        var fullYear = (0, _makeDOMelement2.default)('div', 'fullYear');
         var widthFullYear = void 0;
         if (col === 2) {
             widthFullYear = elementWidth;
@@ -97,7 +81,7 @@ function createGraph(id, data, col) {
             column.style.marginRight = m;
         };
         var height = function height(i) {
-            return data[i] / maxValue(data, col) * 300 + 'px';
+            return data[i] / (0, _maxValueInTable2.default)(data, col) * 300 + 'px';
         };
         var column = makeColumn(height(i), 'red', i);
         widthsCol();
@@ -109,7 +93,7 @@ function createGraph(id, data, col) {
             fullYear.appendChild(column);
         }
 
-        var year = makeElement('div', 'year', data[i - 1]); // append year
+        var year = (0, _makeDOMelement2.default)('div', 'year', data[i - 1]); // append year
         if (document.documentElement.clientWidth * elementWidth / 100 * 2 < 45) {
             year.classList.add("yearVertical");
         }

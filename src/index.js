@@ -3,31 +3,8 @@ import { dividends, dividendsAn, prices, percent, dividendYield, speculativeYiel
 from './sberbank';
 import { css } from './style';
 document.write(`<style>${css}</style>`);
-
-function makeElement(tagName, className, text) {
-    const element = document.createElement(tagName);
-    element.classList.add(className);
-    if (text) {
-        element.textContent = text;
-    }
-    return element;
-};
-
-//definition of the maximum value in data
-function maxValue(data, col) {
-    let stack = data[col + 1];
-    let start = col + 1;
-    for (let i = start; i < data.length; i = i + col) {
-        for (let j = 0; j < col - 1; j++) {
-            if (data[i + j] > stack) {
-                stack = data[i + j];
-            }
-        }
-        if (data[i] > stack) { stack = data[i]; }
-    }
-    return stack;
-}
-
+import maxValue from "./maxValueInTable";
+import makeElement from "./makeDOMelement";
 /* The function of creating a table */
 function createTable(id, data, col) {
     const area = document.getElementById(id);
